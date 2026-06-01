@@ -52,5 +52,7 @@
         </section>
 </main>
 
+  <?php include "include/footer_publico.php"; ?>
+
     </body>
 </html>

@@ -1,0 +1,68 @@
+.form-subida {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  input, select {
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f7fafc;
+    font-size: 0.95rem;
+
+    &:focus {
+      outline: none;
+      border-color: #2b6cb0;
+      background: #fff;
+    }
+  }
+}
+
+.btn-subir {
+  grid-column: span 2;
+  background: #1a365d;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+
+  &:hover { background: #2b6cb0; }
+  @media (max-width: 768px) { grid-column: span 1; }
+}
+
+// Alertas
+.alerta-box {
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  
+  &.success { background: #c6f6d5; color: #22543d; border-left: 5px solid #38a169; }
+  &.error { background: #fed7d7; color: #742a2a; border-left: 5px solid #e53e3e; }
+}
+
+// Badges de tipos de archivos
+.badge-pdf { background: #ffe3e3; color: #c53030; }
+.badge-audio { background: #eef2ff; color: #4c51bf; }
+.badge-video { background: #fef3c7; color: #b45309; }

@@ -10,7 +10,7 @@
 
     <div class="nav-links" id="nav-links">
       <a href="index.php">INICIO</a>
-      <a href="#">CURSOS</a>
+      <a href="cursos.php">CURSOS</a>
       <a href="#">SOBRE NOSOTROS</a>
     </div>
 
@@ -28,7 +28,7 @@
 
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <a href="index.php">INICIO</a>
-    <a href="#">CURSOS</a>
+    <a href="cursos.php">CURSOS</a>
     <a href="#">SOBRE NOSOTROS</a>
     <hr class="mobile-divider" />
     <a class="btn-login-mobile" href="login.php">Iniciar Sesión</a>
