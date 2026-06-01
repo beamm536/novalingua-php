@@ -24,7 +24,7 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
      Reportar Incidencia
     </a>
 
-    <a href="logout.php" class="menu-item logout-btn">
+    <a href="/novalingua/logout.php" class="menu-item logout-btn">
        Cerrar sesión
     </a>
   </nav>

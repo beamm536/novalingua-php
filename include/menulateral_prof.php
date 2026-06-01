@@ -17,7 +17,7 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
              Subir Material
         </a>
         
-        <a href="../logout.php" class="menu-item logout-btn">
+        <a href="/novalingua/logout.php" class="menu-item logout-btn">
              Cerrar Sesión
         </a>
     </nav>

@@ -2,9 +2,9 @@
 session_start();
 
 // Control de sesión del profesor (descomenta y adapta si ya tienes las variables de sesión listas)
-if (!isset($_SESSION['id_profesor'])) {
-    // header("Location: ../../login.php");
-    // exit();
+if (!isset($_SESSION['id_profesor']) || $_SESSION['rol'] !== 'profesor') {
+    header("Location: ../../login.php");
+    exit();
 }
 
 require_once "../../config/conexion.php";
