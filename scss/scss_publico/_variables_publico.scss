@@ -1,0 +1,29 @@
+$primary-dark: #1a365d;  
+$primary-light: #2b6cb0;   
+$white: #ffffff;          
+
+$bg-body: #f7fafc;         
+$text-main: #2d3748;      
+$text-muted: #718096;      
+$border-color: #e2e8f0;    
+
+
+$success: #48bb78;         
+$danger: #e53e3e;          
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: $bg-body;
+  color: $text-main;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.landing-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Traemos la conexión sencilla
-require_once "config/conexion.php";
+require_once "../config/conexion.php";
 
 // Si el alumno no está logueado, al login
 if (!isset($_SESSION['id_alumno'])) {
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Reportar Incidencia — Novalingua</title>
-    <link rel="stylesheet" href="scss/dashboard.css">
+    <link rel="stylesheet" href="../scss/scss_interno/main.css">
     <style>
         /* Estilos directos y sencillos para el formulario */
         .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="dashboard-container">
   
-  <?php include "include/menulateral.php"; ?>
+  <?php include "../include/menulateral.php"; ?>
 
   <main class="main-content">
     <header class="dashboard-header">
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <div class="grid-layout">
-        <div class="dashboard-card">
+        <div class="dashboard-card incidencia-form-card">
           <h3>NUEVA INCIDENCIA</h3>
           
           <?php if (!empty($mensaje_exito)): ?>
@@ -87,7 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php endif; ?>
 
           <form action="incidencias.php" method="POST">
-              
               <div class="form-group">
                   <label for="input_tipo">Clasificación del problema</label>
                   <select name="input_tipo" id="input_tipo" class="form-control" required>
@@ -101,19 +100,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               <div class="form-group">
                   <label for="input_descripcion">¿Qué sucede? Explícalo detalladamente</label>
-                  <textarea name="input_descripcion" id="input_descripcion" rows="5" class="form-control" required placeholder="Escribe aquí los detalles del problema..."></textarea>
+                  <textarea name="input_descripcion" id="input_descripcion" rows="4" class="form-control" required placeholder="Escribe aquí los detalles del problema..."></textarea>
               </div>
 
               <button type="submit" class="btn-enviar">Enviar al equipo de soporte</button>
           </form>
         </div>
-
-        <div class="dashboard-card" style="border-left: 4px solid #1a365d;">
-          <h3>📌 Información del sistema</h3>
-          <p>Tu reporte quedará registrado inmediatamente con el estado <span style="color: #2b6cb0; font-weight: bold;">Abierto</span>.</p>
-          <p>Asociaremos de manera automática tu identificador de alumno de la sesión actual para saber quién eres sin que tengas que escribirlo.</p>
-        </div>
     </div>
+
+    <div class="dashboard-card sistema-footer-banner">
+      <h3>📌 Información del sistema</h3>
+      <p>Tu reporte quedará registrado inmediatamente con el estado <strong>Abierto</strong>. Asociaremos de manera automática tu identificador de alumno de la sesión actual para saber quién eres sin que tengas que escribirlo.</p>
+    </div>
+
   </main>
 </div>
 

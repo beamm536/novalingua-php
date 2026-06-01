@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config/conexion.php";
+require_once "../config/conexion.php";
 
 // Si el alumno no ha iniciado sesión, al login directo
 if (!isset($_SESSION['id_alumno'])) {
@@ -26,13 +26,13 @@ $datos = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Mis Cursos — Novalingua</title>
-    <link rel="stylesheet" href="scss/dashboard.css">
+    <link rel="stylesheet" href="../scss/scss_interno/main.css">
 </head>
 <body>
 
 <div class="dashboard-container">
   
-  <?php include "include/menulateral.php"; ?>
+  <?php include "../include/menulateral.php"; ?>
 
   <main class="main-content">
     <header class="dashboard-header">

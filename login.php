@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["id_alumno"] = $alumno["id_alumno"]; // Asegúrate de que se llame así en tu BD
         
         // Lo mandamos directos al panel de control
-        header("Location: dashboard.php");
+        header("Location: plataforma_interna/dashboard.php");
         exit();
     } else {
         // Si no coincide, preparamos un aviso para la pantalla

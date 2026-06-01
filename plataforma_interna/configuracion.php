@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config/conexion.php";
+require_once "../config/conexion.php";
 
 if (!isset($_SESSION['id_alumno'])) {
     header("Location: login.php");
@@ -20,13 +20,13 @@ $alumno = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Mi Configuración — Novalingua</title>
-    <link rel="stylesheet" href="scss/dashboard.css">
+    <link rel="stylesheet" href="../scss/scss_interno/main.css">
 </head>
 <body>
 
 <div class="dashboard-container">
   
-   <?php include "include/menulateral.php"; ?>
+   <?php include "../include/menulateral.php"; ?>
 
   <main class="main-content">
     <header class="dashboard-header">

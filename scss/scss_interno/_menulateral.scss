@@ -1,0 +1,56 @@
+
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: $primary-dark;
+  color: $white;
+  padding: 24px;
+  box-sizing: border-box;
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    span { color: lighten($primary-light, 15%); }
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .menu-item {
+      color: rgba($white, 0.75);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+
+      &:hover, &.active {
+        background-color: rgba($white, 0.1);
+        color: $white;
+      }
+
+      &.logout-btn {
+        margin-top: 60px;
+        background-color: rgba($danger, 0.15);
+        color: lighten($danger, 10%);
+        &:hover {
+          background-color: $danger;
+          color: $white;
+        }
+      }
+    }
+  }
+}
