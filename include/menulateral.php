@@ -4,7 +4,7 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
 ?>
 <aside class="sidebar">
   <div class="logo-container">
-    <h1 class="logo">NOVALINGUA <span>SCHOOL</span></h1>
+    <h1 class="logo">NOVALINGUA <span>ESTUDIANTES</span></h1>
   </div>
   
   <nav class="sidebar-menu">
