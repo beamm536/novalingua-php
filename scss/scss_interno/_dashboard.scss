@@ -92,3 +92,223 @@
     }
   }
 }
+
+
+
+
+
+.dashboard-compact-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;              // Margen generoso entre filas de distintos cursos
+  width: 100%;
+  max-width: 1200px;      // Ampliamos el máximo global para que quepan holgadamente las 2 columnas
+  margin: 0 auto;         
+}
+
+// 🔥 FILA DEL CURSO: Distribución en 2 columnas paralelas
+.course-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Divide el espacio al 50% exacto para cada tarjeta
+  gap: 24px;                      // Espaciado intermedio entre el curso y sus materiales
+  align-items: start;
+  padding-bottom: 24px;
+  border-bottom: 2px dashed rgba($border-color, 0.6);
+
+  &:last-child {
+    border-bottom: none;          // Quita la línea discontinua en el último elemento
+  }
+
+  // Si la pantalla es muy pequeña (móviles), pasa automáticamente a formato vertical
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.card-header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+
+  h3 { margin: 0 !important; }
+
+  .main-card-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    background-color: rgba($success, 0.12);
+    color: darken($success, 5%);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+}
+
+// 📦 RESTAURACIÓN Y PROTECCIÓN DE VISTA SIN CURSO
+.no-courses-view {
+  width: 100%;
+  max-width: 680px;      // Evita que la tarjeta de error se desparrame a todo el ancho de 1200px
+  margin: 0 auto;        // La centra perfectamente en pantalla
+
+  .full-width-card {
+    width: 100%;
+  }
+
+  .no-enrollment-box {
+    margin-top: 16px;
+
+    .info-notice {
+      background-color: rgba($primary-light, 0.1);
+      color: $primary-dark;
+      padding: 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .section-instruction {
+      color: $text-muted;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .contact-item {
+        background-color: $bg-body;
+        padding: 14px 18px;
+        border-radius: 8px;
+        border: 1px solid $border-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .contact-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          strong { color: $primary-dark; font-weight: 600; }
+          .department-tag {
+            font-size: 0.75rem;
+            background-color: $border-color;
+            color: $text-muted;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+          }
+        }
+
+        .contact-email-link {
+          color: $primary-light;
+          font-weight: 600;
+          text-decoration: none;
+          font-size: 0.9rem;
+          &:hover { text-decoration: underline; }
+        }
+      }
+    }
+  }
+}
+
+.alert-error-box {
+  background-color: rgba($danger, 0.1);
+  color: darken($danger, 15%);
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-left: 4px solid $danger;
+}
+
+// 📂 DISEÑO ALINEADO DE MATERIALES
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .material-item {
+    background-color: $bg-body;
+    border: 1px solid $border-color;
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;            
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($border-color, 0.3);
+    }
+
+    .material-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .icon-wrapper {
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background-color: $white;
+        border-radius: 6px;
+        border: 1px solid $border-color;
+      }
+
+      .material-details {
+        display: flex;
+        align-items: center;
+        gap: 10px;                  
+
+        .material-title {
+          font-size: 0.95rem;
+          color: $primary-dark;
+          font-weight: 600;
+        }
+
+        .type-tag {
+          font-size: 0.65rem;
+          text-transform: uppercase;
+          background-color: $primary-dark;
+          color: $white;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .download-btn {
+      background-color: transparent;
+      color: $primary-light;
+      border: 1px solid $primary-light;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: $primary-light;
+        color: $white;
+      }
+    }
+  }
+}
+
+.empty-materials {
+  color: $text-muted;
+  text-align: center;
+  padding: 16px 0;
+  font-style: italic;
+  font-size: 0.9rem;
+}

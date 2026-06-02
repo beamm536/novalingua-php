@@ -167,6 +167,206 @@ body {
   font-size: 0.8rem;
 }
 
+.dashboard-compact-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.course-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 24px;
+  border-bottom: 2px dashed rgba(226, 232, 240, 0.6);
+}
+.course-row:last-child {
+  border-bottom: none;
+}
+@media (max-width: 992px) {
+  .course-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.card-header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.card-header-inline h3 {
+  margin: 0 !important;
+}
+.card-header-inline .main-card-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background-color: rgba(72, 187, 120, 0.12);
+  color: rgb(63.2589641434, 170.2410358566, 107.9123505976);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.no-courses-view {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.no-courses-view .full-width-card {
+  width: 100%;
+}
+.no-courses-view .no-enrollment-box {
+  margin-top: 16px;
+}
+.no-courses-view .no-enrollment-box .info-notice {
+  background-color: rgba(43, 108, 176, 0.1);
+  color: #1a365d;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.no-courses-view .no-enrollment-box .section-instruction {
+  color: #718096;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.no-courses-view .no-enrollment-box .contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item {
+  background-color: #f7fafc;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item .contact-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item .contact-info strong {
+  color: #1a365d;
+  font-weight: 600;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item .contact-info .department-tag {
+  font-size: 0.75rem;
+  background-color: #e2e8f0;
+  color: #718096;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item .contact-email-link {
+  color: #2b6cb0;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.no-courses-view .no-enrollment-box .contact-list .contact-item .contact-email-link:hover {
+  text-decoration: underline;
+}
+
+.alert-error-box {
+  background-color: rgba(229, 62, 62, 0.1);
+  color: rgb(189.0342465753, 25.4657534247, 25.4657534247);
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-left: 4px solid #e53e3e;
+}
+
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.materials-list .material-item {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+.materials-list .material-item:hover {
+  background-color: rgba(226, 232, 240, 0.3);
+}
+.materials-list .material-item .material-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.materials-list .material-item .material-meta .icon-wrapper {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+.materials-list .material-item .material-meta .material-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.materials-list .material-item .material-meta .material-details .material-title {
+  font-size: 0.95rem;
+  color: #1a365d;
+  font-weight: 600;
+}
+.materials-list .material-item .material-meta .material-details .type-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  background-color: #1a365d;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.materials-list .material-item .download-btn {
+  background-color: transparent;
+  color: #2b6cb0;
+  border: 1px solid #2b6cb0;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.materials-list .material-item .download-btn:hover {
+  background-color: #2b6cb0;
+  color: #ffffff;
+}
+
+.empty-materials {
+  color: #718096;
+  text-align: center;
+  padding: 16px 0;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
 .tabla-horario {
   width: 100%;
   border-collapse: separate;
