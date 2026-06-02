@@ -6,20 +6,19 @@ $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
-    $contrasenia = trim($_POST['contrasenia']); // Asegúrate de que coincida con el name de tu input
+    $contrasenia = trim($_POST['contrasenia']);
 
     if (!empty($email) && !empty($contrasenia)) {
         try {
-            // --- PASO 1: Buscar en la tabla de PROFESORES ---
+            
             $sql_prof = "SELECT id_profesor, nombre, contrasenia FROM profesor WHERE email = :email LIMIT 1";
-            // NOTA: Si en tu tabla 'profesor' no existiera la columna 'contrasenia', 
-            // recuerda que en el dump actual está compartiendo estructura de accesos.
+            
             $stmt_prof = $pdo->prepare($sql_prof);
             $stmt_prof->execute(['email' => $email]);
             $profesor = $stmt_prof->fetch(PDO::FETCH_ASSOC);
 
-            if ($profesor && $profesor['contrasenia'] == $contrasenia) { // Cambiar por password_verify si usas hash
-                // Es un profesor válido
+            if ($profesor && $profesor['contrasenia'] == $contrasenia) { 
+                
                 $_SESSION['id_profesor'] = $profesor['id_profesor'];
                 $_SESSION['nombre'] = $profesor['nombre'];
                 $_SESSION['rol'] = 'profesor';
@@ -28,24 +27,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
 
-            // --- PASO 2: Si no es profesor, buscar en la tabla de ALUMNOS ---
+
             $sql_alum = "SELECT id_alumno, nombre, contrasenia FROM alumno_info WHERE email = :email LIMIT 1";
             $stmt_alum = $pdo->prepare($sql_alum);
             $stmt_alum->execute(['email' => $email]);
             $alumno = $stmt_alum->fetch(PDO::FETCH_ASSOC);
 
             if ($alumno && $alumno['contrasenia'] == $contrasenia) {
-                // Es un alumno válido
+                
                 $_SESSION['id_alumno'] = $alumno['id_alumno'];
                 $_SESSION['nombre'] = $alumno['nombre'];
                 $_SESSION['rol'] = 'alumno';
 
-                // Rediriges a la carpeta o panel del alumno (ejemplo: dashboard_alumno.php)
+                
                 header("Location: plataforma_interna/dashboard.php");
                 exit();
             }
 
-            // Si llegó aquí, las credenciales no coinciden en ninguna de las dos tablas
+            
             $error = "❌ El correo electrónico o la contraseña son incorrectos.";
 
         } catch (PDOException $e) {

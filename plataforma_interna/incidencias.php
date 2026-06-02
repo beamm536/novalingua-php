@@ -1,9 +1,9 @@
 <?php
 session_start();
-// Traemos la conexión sencilla
+
 require_once "../config/conexion.php";
 
-// Si el alumno no está logueado, al login
+
 if (!isset($_SESSION['id_alumno'])) {
     header("Location: login.php");
     exit();
@@ -13,17 +13,17 @@ $id_alumno = $_SESSION['id_alumno'];
 $mensaje_exito = "";
 $mensaje_error = "";
 
-// ¿Se ha pulsado el botón de enviar reporte?
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipo = $_POST["input_tipo"];
     $descripcion = $_POST["input_descripcion"];
     
-    // Ponemos 'Abierto' exactamente igual que en tu ENUM (con la A mayúscula)
+    
     $estado_inicial = "Abierto"; 
 
     if (!empty($tipo) && !empty($descripcion)) {
         try {
-            // Hacemos el INSERT. Dejamos id_empleado como NULL porque aún no se ha asignado a nadie
+            
             $query = "INSERT INTO incidencia (descripcion, tipo, estado, fecha_creacion, id_alumno, id_empleado) 
                       VALUES (:desc, :tipo, :estado, NOW(), :id_al, NULL)";
             
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Reportar Incidencia — Novalingua</title>
     <link rel="stylesheet" href="../scss/scss_interno/main.css">
     <style>
-        /* Estilos directos y sencillos para el formulario */
+        
         .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
         .form-group label { font-weight: 600; color: #1a365d; }
         .form-control { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; font-family: inherit; font-size: 0.95rem; }
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <main class="main-content">
     <header class="dashboard-header">
-      <h2>⚠️ Centro de Soporte Técnico</h2>
+      <h2> Centro de Soporte Técnico</h2>
       <p>Crea un reporte si experimentas problemas en la plataforma o con tus servicios escolares.</p>
     </header>
 

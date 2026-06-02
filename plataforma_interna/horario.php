@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_alumno'])) {
 
 $id_alumno = $_SESSION['id_alumno'];
 
-// Consultamos los datos de horario del curso de este alumno
+
 $query = "SELECT c.descripcion, c.dias_semana, c.franja_horaria 
           FROM alumno_curso ac
           JOIN curso c ON ac.id_curso = c.id_curso
@@ -26,7 +26,7 @@ $lista_cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Mi Horario — Novalingua</title>
     <link rel="stylesheet" href="../scss/scss_interno/main.css">
     <style>
-        /* Unos estilos rápidos para la tabla de horarios */
+        
         .tabla-horario { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
         .tabla-horario th, .tabla-horario td { border: 1px solid #ddd; padding: 12px; text-align: center; }
         .tabla-horario th { background-color: #1a365d; color: white; }

@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_alumno'])) {
 
 $id_alumno = $_SESSION['id_alumno'];
 
-// Consultamos todos los datos personales del alumno
+
 $query = "SELECT * FROM alumno_info WHERE id_alumno = :id LIMIT 1";
 $stmt = $pdo->prepare($query);
 $stmt->execute(['id' => $id_alumno]);
@@ -30,7 +30,7 @@ $alumno = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <main class="main-content">
     <header class="dashboard-header">
-      <h2>⚙️ Datos de Cuenta y Perfil</h2>
+      <h2> Datos de Cuenta y Perfil</h2>
     </header>
 
     <div class="grid-layout">
@@ -47,7 +47,7 @@ $alumno = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="dashboard-card" style="border-left: 4px solid #2b6cb0;">
           <h3>📌 INFORMACIÓN DE LA SECRETARÍA</h3>
           <p>Recuerda que para solicitar cambios de horario o modalidad (Presencial/Online), debes enviar un correo con un mínimo de 5 días de antelación al inicio del mes.</p>
-          <p>📧 <strong>soporte@novalingua.com</strong></p>
+          <p> <strong>soporte@novalingua.com</strong></p>
         </div>
     </div>
   </main>

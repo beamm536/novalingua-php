@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Control de sesión del profesor (descomenta y adapta si ya tienes las variables de sesión listas)
+
 if (!isset($_SESSION['id_profesor']) || $_SESSION['rol'] !== 'profesor') {
     header("Location: ../../login.php");
     exit();
@@ -12,9 +12,7 @@ require_once "../../config/conexion.php";
 $mensaje = "";
 $clase_mensaje = "";
 
-// ============================================================
-// --- LÓGICA 1: CREAR NUEVO GRUPO / CURSO (Adaptado a tus ENUM) ---
-// ============================================================
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion_crear_curso'])) {
     $descripcion = trim($_POST['descripcion']);
     $nivel = $_POST['nivel'];
@@ -22,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion_crear_curso']))
     $dias_semana = $_POST['dias_semana'];
     $franja_horaria = trim($_POST['franja_horaria']);
     
-    // IDs por defecto para que no falle la restricción NOT NULL de tu tabla
+    
     $id_profesor = isset($_SESSION['id_profesor']) ? intval($_SESSION['id_profesor']) : 1; 
     $id_sede = 1; 
 
@@ -54,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion_crear_curso']))
     }
 }
 
-// Determinar si estamos viendo el listado general (0) o el detalle de un curso específico (ID)
+
 $id_curso_detalle = isset($_GET['id_curso']) ? intval($_GET['id_curso']) : 0;
 ?>
 <!DOCTYPE html>
@@ -145,7 +143,7 @@ $id_curso_detalle = isset($_GET['id_curso']) ? intval($_GET['id_curso']) : 0;
             <h3>Grupos Activos en la Base de Datos</h3>
             <div class="grupos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 15px;">
                 <?php
-                // 🛠️ CONSULTA CORREGIDA 1: Cuenta los alumnos pasando correctamente por la tabla intermedia 'alumno_curso'
+                
                 $sql_cursos = "SELECT id_curso, descripcion, modalidad,
                                (SELECT COUNT(*) FROM alumno_curso WHERE id_curso = curso.id_curso) AS total_alumnos,
                                (SELECT COUNT(*) FROM material WHERE id_curso = curso.id_curso) AS total_materiales
@@ -170,7 +168,7 @@ $id_curso_detalle = isset($_GET['id_curso']) ? intval($_GET['id_curso']) : 0;
 
         <?php else: ?>
             <?php
-            // Obtenemos los metadatos completos del curso
+            
             $stmt_c = $pdo->prepare("SELECT * FROM curso WHERE id_curso = :id");
             $stmt_c->execute(['id' => $id_curso_detalle]);
             $curso_actual = $stmt_c->fetch(PDO::FETCH_ASSOC);
@@ -180,7 +178,7 @@ $id_curso_detalle = isset($_GET['id_curso']) ? intval($_GET['id_curso']) : 0;
                 exit();
             }
 
-            // 🛠️ CONSULTA CORREGIDA 2 (Línea 188 vieja): Trae los alumnos haciendo INNER JOIN con la tabla intermedia 'alumno_curso'
+            
             $stmt_al = $pdo->prepare("SELECT ai.id_alumno, ai.nombre, ai.email 
                                       FROM alumno_info ai
                                       INNER JOIN alumno_curso ac ON ai.id_alumno = ac.id_alumno 
@@ -189,7 +187,7 @@ $id_curso_detalle = isset($_GET['id_curso']) ? intval($_GET['id_curso']) : 0;
             $stmt_al->execute(['id' => $id_curso_detalle]);
             $alumnos_grupo = $stmt_al->fetchAll(PDO::FETCH_ASSOC);
 
-            // 🛠️ CONSULTA CORREGIDA 3: Trae los materiales vinculados a este curso (esta tabla sí está bien en tu BD)
+            
             $stmt_mat = $pdo->prepare("SELECT nombre, tipo, url_descarga FROM material WHERE id_curso = :id ORDER BY id_material DESC");
             $stmt_mat->execute(['id' => $id_curso_detalle]);
             $materiales_grupo = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);

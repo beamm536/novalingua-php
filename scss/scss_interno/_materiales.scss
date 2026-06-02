@@ -51,7 +51,7 @@
   @media (max-width: 768px) { grid-column: span 1; }
 }
 
-// Alertas
+
 .alerta-box {
   padding: 15px;
   border-radius: 6px;
@@ -62,7 +62,7 @@
   &.error { background: #fed7d7; color: #742a2a; border-left: 5px solid #e53e3e; }
 }
 
-// Badges de tipos de archivos
+
 .badge-pdf { background: #ffe3e3; color: #c53030; }
 .badge-audio { background: #eef2ff; color: #4c51bf; }
 .badge-video { background: #fef3c7; color: #b45309; }

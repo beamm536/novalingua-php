@@ -66,7 +66,7 @@
   }
 }
 
-// Lista técnica para la página de configuración
+
 .profile-info-list {
   list-style: none;
   padding: 0;
@@ -100,26 +100,26 @@
 .dashboard-compact-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 36px;              // Margen generoso entre filas de distintos cursos
+  gap: 36px;              
   width: 100%;
-  max-width: 1200px;      // Ampliamos el máximo global para que quepan holgadamente las 2 columnas
+  max-width: 1200px;      
   margin: 0 auto;         
 }
 
-// 🔥 FILA DEL CURSO: Distribución en 2 columnas paralelas
+
 .course-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; // Divide el espacio al 50% exacto para cada tarjeta
-  gap: 24px;                      // Espaciado intermedio entre el curso y sus materiales
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px;                      
   align-items: start;
   padding-bottom: 24px;
   border-bottom: 2px dashed rgba($border-color, 0.6);
 
   &:last-child {
-    border-bottom: none;          // Quita la línea discontinua en el último elemento
+    border-bottom: none;          
   }
 
-  // Si la pantalla es muy pequeña (móviles), pasa automáticamente a formato vertical
+  
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -146,11 +146,11 @@
   }
 }
 
-// 📦 RESTAURACIÓN Y PROTECCIÓN DE VISTA SIN CURSO
+
 .no-courses-view {
   width: 100%;
-  max-width: 680px;      // Evita que la tarjeta de error se desparrame a todo el ancho de 1200px
-  margin: 0 auto;        // La centra perfectamente en pantalla
+  max-width: 680px;      
+  margin: 0 auto;        
 
   .full-width-card {
     width: 100%;
@@ -226,7 +226,7 @@
   border-left: 4px solid $danger;
 }
 
-// 📂 DISEÑO ALINEADO DE MATERIALES
+
 .materials-list {
   display: flex;
   flex-direction: column;

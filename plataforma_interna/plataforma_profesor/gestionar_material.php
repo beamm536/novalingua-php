@@ -1,10 +1,8 @@
 <?php
 session_start();
-// Cambia esto si tus variables de sesión para el profesor son distintas
+
 if (!isset($_SESSION['id_profesor'])) {
-    // Si no está logueado como profesor, lo echamos (por ahora simulamos o redirigimos)
-    // header("Location: ../login.php");
-    // exit();
+
 }
 
 require_once "../../config/conexion.php";
@@ -12,31 +10,31 @@ require_once "../../config/conexion.php";
 $mensaje = "";
 $clase_mensaje = "";
 
-// --- LÓGICA 1: SUBIR NUEVO MATERIAL ---
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion_subir'])) {
     $nombre = $_POST['nombre'];
     $tipo = $_POST['tipo'];
     $id_curso = $_POST['id_curso'];
 
-    // Configurar la carpeta de destino en tu MAMP
+    
     $directorio_destino = "../../uploads/";
 
-    // Si la carpeta 'uploads' no existe en la raíz de tu proyecto, PHP la crea sola
+    
     if (!file_exists($directorio_destino)) {
         mkdir($directorio_destino, 0777, true);
     }
 
-    // Procesamos el archivo adjunto
-    $archivo_nombre = time() . "_" . basename($_FILES["fichero"]["name"]); // Le añadimos el timestamp para que no se machaquen archivos con el mismo nombre
+    
+    $archivo_nombre = time() . "_" . basename($_FILES["fichero"]["name"]); 
     $ruta_final = $directorio_destino . $archivo_nombre;
     $extension = strtolower(pathinfo($ruta_final, PATHINFO_EXTENSION));
 
-    // Validamos que realmente se haya subido un archivo temporal sin errores
+    
     if ($_FILES["fichero"]["error"] == 0) {
-        // Movemos el archivo de la memoria temporal de MAMP a nuestra carpeta 'uploads'
+        
         if (move_uploaded_file($_FILES["fichero"]["tmp_name"], $ruta_final)) {
 
-            // Guardamos la URL/Ruta relativa en la base de datos
+            
             $url_descarga = "uploads/" . $archivo_nombre;
 
             $sql = "INSERT INTO material (nombre, tipo, url_descarga, id_curso) VALUES (:nombre, :tipo, :url, :id_curso)";
@@ -65,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion_subir'])) {
     }
 }
 
-// --- LÓGICA 2: ELIMINAR MATERIAL ---
+
 if (isset($_GET['borrar'])) {
     $id_borrar = $_GET['borrar'];
 
-    // Primero buscamos la ruta del archivo para borrarlo del disco duro
+
     $sql_archivo = "SELECT url_descarga FROM material WHERE id_material = :id";
     $stmt_arc = $pdo->prepare($sql_archivo);
     $stmt_arc->execute(['id' => $id_borrar]);
@@ -78,10 +76,10 @@ if (isset($_GET['borrar'])) {
     if ($material) {
         $ruta_fisica = "../../" . $material['url_descarga'];
         if (file_exists($ruta_fisica)) {
-            unlink($ruta_fisica); // Borra el archivo PDF/Audio del ordenador
+            unlink($ruta_fisica); 
         }
 
-        // Luego lo borramos de la base de datos
+        
         $sql_delete = "DELETE FROM material WHERE id_material = :id";
         $stmt_del = $pdo->prepare($sql_delete);
         $stmt_del->execute(['id' => $id_borrar]);
@@ -91,12 +89,12 @@ if (isset($_GET['borrar'])) {
     }
 }
 
-// --- CONSULTA PARA RELLENAR LAS TABLAS Y DESPLEGABLES ---
-// 1. Conseguimos todos los cursos disponibles para el desplegable del formulario
+
+
 $cursos_stmt = $pdo->query("SELECT id_curso, descripcion FROM curso");
 $lista_cursos = $cursos_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// 2. Conseguimos todos los materiales subidos hasta ahora para listarlos abajo
+
 $materiales_stmt = $pdo->query("SELECT m.*, c.descripcion as nombre_curso FROM material m JOIN curso c ON m.id_curso = c.id_curso ORDER BY m.id_material DESC");
 $lista_materiales = $materiales_stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

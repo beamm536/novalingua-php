@@ -16,13 +16,13 @@ $empleados = [];
 $error_db = "";
 
 try {
-    // 📊 1. Obtener los datos personales del alumno logueado
+    
     $sql_alumno = "SELECT nombre, apellidos, email FROM alumno_info WHERE id_alumno = :id_alumno LIMIT 1";
     $stmt_al = $pdo->prepare($sql_alumno);
     $stmt_al->execute(['id_alumno' => $id_alumno]);
     $alumno_datos = $stmt_al->fetch(PDO::FETCH_ASSOC);
 
-    // 📚 2. Obtener TODOS los cursos activos del alumno
+    
     $sql_cursos = "SELECT c.id_curso, c.descripcion, c.nivel, c.modalidad, c.franja_horaria, ac.progreso 
                    FROM curso c
                    INNER JOIN alumno_curso ac ON c.id_curso = ac.id_curso
@@ -31,7 +31,7 @@ try {
     $stmt_cu->execute(['id_alumno' => $id_alumno]);
     $cursos_alumno = $stmt_cu->fetchAll(PDO::FETCH_ASSOC);
 
-    // 📥 3. Si está matriculado en cursos, cargamos sus materiales correspondientes
+    
     if (!empty($cursos_alumno)) {
         $ids_cursos = array_column($cursos_alumno, 'id_curso');
         $placeholders = implode(',', array_fill(0, count($ids_cursos), '?'));
@@ -45,7 +45,7 @@ try {
             $materiales_por_curso[$mat['id_curso']][] = $mat;
         }
     } else {
-        // 👔 4. Si no tiene cursos, traemos los empleados de administración para la tarjeta de contacto
+        
         $sql_emp = "SELECT nombre, apellidos, email, departamento FROM empleado LIMIT 3";
         $stmt_emp = $pdo->query($sql_emp);
         $empleados = $stmt_emp->fetchAll(PDO::FETCH_ASSOC);
@@ -116,7 +116,7 @@ try {
                             </section>
 
                             <section class="dashboard-card">
-                                <h3>📚 Recursos y Materiales de Clase</h3>
+                                <h3>Recursos y Materiales de Clase</h3>
 
                                 <?php 
                                 $id_act = $curso['id_curso'];
